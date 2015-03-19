@@ -1,2 +1,2 @@
-# SQLaas
+# SQLaaS
 SQL as a Service
