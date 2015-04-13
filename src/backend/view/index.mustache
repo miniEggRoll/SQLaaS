@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title>SQLaaS</title>
+	<script src="/jquery/dist/jquery.min.js"></script>
+	<script src="/semantic-ui-form/form.min.js"></script>
+	<link rel="stylesheet" href="/semantic-ui-list/list.min.css">
+	<link rel="stylesheet" href="/semantic-ui-form/form.min.css">
+	<link rel="stylesheet" href="/semantic-ui-table/table.min.css">
+</head>
+<body>
+
+<div class="ui bulleted list">
+	{{#list}}
+  	<a class="item" href="/sql/{{id}}">{{id}}</a>
+  	{{/list}}
+</div>
+
+{{#sql}}
+<form class="ui form" >
+	<h4 class="ui dividing header">{{id}}</h4>
+	<div class="field">
+		<label>SQL template</label>
+		<textarea>{{template}}</textarea>
+	</div>
+	<div class="ui error message">
+		<div class="header">We noticed some issues</div>
+	</div>
+	<div class="ui submit button">submit</div>
+</form>
+{{/sql}}
+
+{{#sql}}
+<form class="ui form">
+	<div class="ui input" id="querystring" >
+	  	<input type="text" placeholder="querystring">
+	</div>
+	<div class="ui error message">
+		<div class="header">We noticed some issues</div>
+	</div>
+	<div class="ui submit button" id="exec" >exec</div>
+</form>
+{{/sql}}
+
+<table class="ui table">
+    <thead><tr></tr></thead>
+  <tbody>
+  	{{#exec}}
+    <tr>
+      {{json}}
+    </tr>
+    {{/exec}}
+  </tbody>
+</table>
+<script>
+    var sqlID = 'asfdkjl'
+	$('#exec').on('click', function(){
+		window.location.href = window.location.origin + '/exec/'+sqlID+'?' + $('#querystring').find('input').val()
+	});
+</script>
+</body>
+</html>

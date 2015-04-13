@@ -1,0 +1,6 @@
+SELECT * 
+FROM world.City city
+INNER JOIN world.Country ctry
+ON city.CountryCode = ctry.Code
+WHERE ctry.Code = {{code}}
+LIMIT 1
